@@ -95,6 +95,50 @@ Older releases are preserved in the [changelog archive](docs/changelog-archive.m
 * **native:** a package-intent parse now sends the caller's `PATH` to the resident. The resident is long-lived, so its own `PATH` is the one it was spawned with; a manager it cannot resolve (`npx` from a test or tool directory) made the TypeScript launch evidence incomplete and sent a contained typecheck back to review even though the caller resolved the manager fine.
 * **native:** a resident that answers a context-digest request with its own error envelope is now reported by that code — and recorded against the resilience breaker — instead of being flattened into `native_context_digest_result_invalid`. An envelope outside the contract keeps its code in the rejection reason, and a rejected result names the contract clause that rejected it with the offending keys, so a foreign frame, a stale frame and a truncated read are no longer indistinguishable.
 
+## [3.58.0](https://github.com/hashgraph-online/hol-guard/compare/v3.57.0...v3.58.0) (2026-10-26)
+
+
+### Features
+
+* **extensions:** add drip command safety extension ([b030e35](https://github.com/hashgraph-online/hol-guard/commit/b030e35e400417e56397bf178c290791913a8a1d))
+* **guard:** check configured MCP servers in workspace assessments ([#5993](https://github.com/hashgraph-online/hol-guard/issues/5993)) ([6c88b29](https://github.com/hashgraph-online/hol-guard/commit/6c88b291472054dfd10df033f1314f8636683eae))
+* **guard:** check project agent hooks in background workspace assessments ([#6014](https://github.com/hashgraph-online/hol-guard/issues/6014)) ([3083c57](https://github.com/hashgraph-online/hol-guard/commit/3083c57d24c81e48c56e115e2161c415d53a51e6))
+* **guard:** reconcile temporary MCP grants in the resident ([#6025](https://github.com/hashgraph-online/hol-guard/issues/6025)) ([ec9ee4e](https://github.com/hashgraph-online/hol-guard/commit/ec9ee4efcaf8e82b769056a85f9fd0c222f58995))
+* **guard:** write policy decisions in the resident ([#6023](https://github.com/hashgraph-online/hol-guard/issues/6023)) ([4d86669](https://github.com/hashgraph-online/hol-guard/commit/4d86669af6831c3a7e55327f12e772f9f5d5e13b))
+* **plugin-kit:** print a listing owner's HOL stats with hol-guard plugin stats ([#6031](https://github.com/hashgraph-online/hol-guard/issues/6031)) ([2dc9e9a](https://github.com/hashgraph-online/hol-guard/commit/2dc9e9a24fda7e51df923919b63a6b0390d60ec4))
+* **plugin-release:** attest a CycloneDX SBOM and annotate changes since the previous release ([#6024](https://github.com/hashgraph-online/hol-guard/issues/6024)) ([96d7a50](https://github.com/hashgraph-online/hol-guard/commit/96d7a506fa6429feff54927fa65bd6223ec4f6f0))
+* **plugin:** check and convert plugins against the Agent Plugins spec ([#6021](https://github.com/hashgraph-online/hol-guard/issues/6021)) ([fc270a1](https://github.com/hashgraph-online/hol-guard/commit/fc270a183382f0e567b556bb94c7d957d00a8ebf))
+* **plugin:** install and uninstall HOL listings with each runtime's CLI ([#6013](https://github.com/hashgraph-online/hol-guard/issues/6013)) ([0096dce](https://github.com/hashgraph-online/hol-guard/commit/0096dcee02ebaabfc0bf4a106fdaeffb72a1522b))
+* **plugin:** let the release summary carry one HOL Blue line ([#5988](https://github.com/hashgraph-online/hol-guard/issues/5988)) ([aa04f90](https://github.com/hashgraph-online/hol-guard/commit/aa04f90daae5f9f1023f211260bc50d18c31b7bc))
+* **plugin:** print a draft .well-known plugin card ([#6033](https://github.com/hashgraph-online/hol-guard/issues/6033)) ([b3681a6](https://github.com/hashgraph-online/hol-guard/commit/b3681a6692c3f139f2ebf7246002d4d1f518ff7f))
+* **runtime:** derive and publish the policy verifier key natively ([#6011](https://github.com/hashgraph-online/hol-guard/issues/6011)) ([b036d45](https://github.com/hashgraph-online/hol-guard/commit/b036d45cd416161e1afc10710b43234dc19823df))
+* **workspace:** check agent skills in background workspace assessments ([#5990](https://github.com/hashgraph-online/hol-guard/issues/5990)) ([fdd541c](https://github.com/hashgraph-online/hol-guard/commit/fdd541cf919a7235ea569765c266f290becbbed0))
+
+
+### Bug Fixes
+
+* **claude:** store a tool-call permission notice with its credentials masked ([#6001](https://github.com/hashgraph-online/hol-guard/issues/6001)) ([408a8a0](https://github.com/hashgraph-online/hol-guard/commit/408a8a0d7f1519210b3e88f45c4c4021240a3717))
+* **cli:** explain native runtime installation requirements ([#5940](https://github.com/hashgraph-online/hol-guard/issues/5940)) ([64a3e03](https://github.com/hashgraph-online/hol-guard/commit/64a3e037ad9c20702235b6e85ba85fdd917fa67c))
+* **command:** read a package directory flag the same way for every verb ([#6003](https://github.com/hashgraph-online/hol-guard/issues/6003)) ([0857196](https://github.com/hashgraph-online/hol-guard/commit/0857196982fcc37c1edbc434bbfff269e58ed219))
+* **command:** refuse a contained run that hands the shell a directory search path ([#5996](https://github.com/hashgraph-online/hol-guard/issues/5996)) ([f82dcce](https://github.com/hashgraph-online/hol-guard/commit/f82dccec4fd168df4d41a2c0cd22515bfa84e783))
+* **command:** walk a project's own skills tree without review ([#5994](https://github.com/hashgraph-online/hol-guard/issues/5994)) ([0561efc](https://github.com/hashgraph-online/hol-guard/commit/0561efc939e0b93c983d390884e6baae156e1783))
+* **connect:** keep polling for device approval when one request goes unanswered ([#6005](https://github.com/hashgraph-online/hol-guard/issues/6005)) ([ac1a0b9](https://github.com/hashgraph-online/hol-guard/commit/ac1a0b998b5b184399b7dd85658d27482295b2e1))
+* **dashboard:** explain extension policy save failures instead of printing daemon codes ([#6019](https://github.com/hashgraph-online/hol-guard/issues/6019)) ([7c8fe3a](https://github.com/hashgraph-online/hol-guard/commit/7c8fe3abf9eb703f8fe7f7ee4e5446aa4104101b))
+* **dashboard:** keep the standalone Sync approval about syncing and close it when the sync succeeds ([#6028](https://github.com/hashgraph-online/hol-guard/issues/6028)) ([05febb2](https://github.com/hashgraph-online/hol-guard/commit/05febb2177ec8b057678922de0d559dd6bf81d81))
+* **dashboard:** stop asking a connected device to connect Guard Cloud when intel has not synced ([#6041](https://github.com/hashgraph-online/hol-guard/issues/6041)) ([91890fc](https://github.com/hashgraph-online/hol-guard/commit/91890fc8d49bcddb8197935dde916d0cb11ec6ce))
+* **extensions:** stop a failed policy save from blocking every later save ([#6015](https://github.com/hashgraph-online/hol-guard/issues/6015)) ([1229abf](https://github.com/hashgraph-online/hol-guard/commit/1229abfd52d2ac39ad61470b230969cd20eeec6b))
+* **guard:** report dependency files below audit discovery as unchecked ([#5986](https://github.com/hashgraph-online/hol-guard/issues/5986)) ([ebdf5a5](https://github.com/hashgraph-online/hol-guard/commit/ebdf5a5f65e07578250528b50465f8623378f270))
+* **guard:** say when a workspace has no dependency files to check ([#5989](https://github.com/hashgraph-online/hol-guard/issues/5989)) ([6bf9f88](https://github.com/hashgraph-online/hol-guard/commit/6bf9f88edec5328884d18b3e9afbe1ef8342aada))
+* **native:** read logged launches, rooted find -exec and looped inline programs as review ([#6007](https://github.com/hashgraph-online/hol-guard/issues/6007)) ([368d35e](https://github.com/hashgraph-online/hol-guard/commit/368d35e44cfc9db17f1a59b9dc1a20e70730d5ab))
+* **package:** block bundle-flagged Copilot and exec-flow packages before review ([#6004](https://github.com/hashgraph-online/hol-guard/issues/6004)) ([0f79868](https://github.com/hashgraph-online/hol-guard/commit/0f798685d84c867ac83436f9705b78dea24cfc35))
+* **package:** block bundle-flagged packages launched with npx and bunx ([#6010](https://github.com/hashgraph-online/hol-guard/issues/6010)) ([80d8d83](https://github.com/hashgraph-online/hol-guard/commit/80d8d836f9489d2d9c60cd34a2acda88861b3bf8))
+* **release:** ship a Linux ARM64 native wheel on the GitHub release ([#6009](https://github.com/hashgraph-online/hol-guard/issues/6009)) ([f6274d1](https://github.com/hashgraph-online/hol-guard/commit/f6274d1e36425b56663f2e91e8456f464103ee85)), closes [#5923](https://github.com/hashgraph-online/hol-guard/issues/5923)
+* **runtime:** ask the classifier for the contained peel instead of peeling it twice ([#6002](https://github.com/hashgraph-online/hol-guard/issues/6002)) ([9cd2aef](https://github.com/hashgraph-online/hol-guard/commit/9cd2aef150850671dbe7401cfa613ad207b80c55))
+* **runtime:** keep enforcing when an abandoned prepare sits above the authority head ([#6022](https://github.com/hashgraph-online/hol-guard/issues/6022)) ([04c53c2](https://github.com/hashgraph-online/hol-guard/commit/04c53c202c24b225e9692be63733cec8aec2ad89))
+* **store:** mask credentials in queued tool-call commands ([#6000](https://github.com/hashgraph-online/hol-guard/issues/6000)) ([66eedfa](https://github.com/hashgraph-online/hol-guard/commit/66eedfa95cd8f2b040f7701179d0a88308f44bb4))
+* **supply-chain:** offer a retry when Guard Cloud cannot be reached during sync ([#6040](https://github.com/hashgraph-online/hol-guard/issues/6040)) ([fba8fd1](https://github.com/hashgraph-online/hol-guard/commit/fba8fd1cb3b7021765edbfd0b1a29f515b1dce94))
+* **update:** point native Windows ARM64 Python at x64 Python ([#6006](https://github.com/hashgraph-online/hol-guard/issues/6006)) ([7448f89](https://github.com/hashgraph-online/hol-guard/commit/7448f899dae3ec1d65cbb42208b6731034da22d2))
+
 ## [3.57.0](https://github.com/hashgraph-online/hol-guard/compare/v3.56.0...v3.57.0) (2026-10-25)
 
 
