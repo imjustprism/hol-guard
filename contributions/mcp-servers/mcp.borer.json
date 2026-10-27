@@ -127,6 +127,10 @@
       "state": "review"
     },
     {
+      "name": "live_scan",
+      "state": "review"
+    },
+    {
       "name": "live_watch",
       "state": "review"
     },
